@@ -24,7 +24,7 @@ pnpm i
 
 или npm
 ```
-pnm i
+npm i
 ```
 
 или yarn
