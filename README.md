@@ -14,7 +14,7 @@ ManualMaker - сервис для создания всевозможных ру
 Для запуска проекта необходимо установить 
 - [NodeJS](https://nodejs.org/en/download)
 - [Git](https://git-scm.com/downloads)
-Создать аккаунт [MongoDB](https://www.mongodb.com/cloud/atlas/register)
+- Зарегистрировать аккаунт [MongoDB](https://www.mongodb.com/cloud/atlas/register) и создать базу данных 
 
 ## Клонировать проект
 ```
@@ -52,3 +52,7 @@ nest start
 ```
 nest start --watch
 ```
+
+#Благодарности
+[Алексей Константинович Козлов](https://github.com/MiFista01) - за полезные советы, тестирование проекта и помощь в разработке
+[Юрий Валентинович Мельников](https://github.com/Dew25) - за полезные советы
