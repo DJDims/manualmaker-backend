@@ -1,7 +1,7 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateManualDto } from './create-manual.dto';
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from "class-validator";
+import { IsString } from "@nestjs/class-validator";
 import { TagSchema } from "../../tag/tag.schema";
 import { IStep } from './interfaces';
 

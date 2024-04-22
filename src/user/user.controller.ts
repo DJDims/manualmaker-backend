@@ -24,7 +24,7 @@ export class UserController {
   @ApiOperation({ summary: 'Get one user' })
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.userService.findOne(id);
+    return this.userService.findById(id);
   }
 
   @ApiOperation({ summary: 'Edit user' })

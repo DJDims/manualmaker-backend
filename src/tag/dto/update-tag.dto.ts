@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateTagDto } from './create-tag.dto';
-import { IsOptional, IsString, IsBoolean } from 'class-validator';
+import { IsOptional, IsString, IsBoolean } from '@nestjs/class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateTagDto extends PartialType(CreateTagDto) {
