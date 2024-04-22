@@ -10,6 +10,12 @@ ManualMaker - сервис для создания всевозможных ру
 # Статус проекта: В разработке
 
 # Как запускать
+## Необходимое ПО
+Для запуска проекта необходимо установить 
+- [NodeJS](https://nodejs.org/en/download)
+- [Git](https://git-scm.com/downloads)
+Создать аккаунт [MongoDB](https://www.mongodb.com/cloud/atlas/register)
+
 ## Клонировать проект
 ```
 git clone https://github.com/DJDims/manualmaker-backend
@@ -31,6 +37,10 @@ npm i
 ```
 yarn install
 ```
+
+## Заполнить файл .env
+DATABASE = *строка подключения к mongodb*
+ACCESS_TOKEN_SECRET = *секретная строка*
 
 ## Запустить
 В обычном режиме
