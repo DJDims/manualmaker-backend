@@ -21,10 +21,16 @@ export class TagController {
     return this.tagService.findAll();
   }
 
-  @ApiOperation({ summary: 'Get one tag' })
+  @ApiOperation({ summary: 'Get one tag by id' })
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.tagService.findOne(id);
+  findById(@Param('id') id: string) {
+    return this.tagService.findById(id);
+  }
+
+  @ApiOperation({ summary: 'Get one tag by name' })
+  @Get('name/:name')
+  findByName(@Param('name') name: string) {
+    return this.tagService.findByName(name);
   }
 
   @ApiOperation({ summary: 'Edit tag' })

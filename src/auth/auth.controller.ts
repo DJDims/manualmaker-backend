@@ -1,36 +1,55 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus, UseGuards, Request } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import {
+	Controller,
+	Get,
+	Post,
+	Body,
+	UseGuards,
+	Request
+} from "@nestjs/common";
+import { AuthService } from "./auth.service";
+import { AuthGuard } from "../guards/auth.guard";
+import { LoginDto } from "./dto/login.dto";
+import { RegisterDto } from "./dto/register.dto";
+import {
+	ApiTags,
+	ApiOperation,
+	ApiResponse,
+	ApiBearerAuth
+} from "@nestjs/swagger";
+import { IsUserExistsGuard } from "src/guards/is-user-exists.guard";
+import { IsUserNotExistsGuard } from "src/guards/is-user-not-exists.guard";
 
-@ApiTags('auth')
-@Controller('auth')
+@ApiTags("auth")
+@Controller("auth")
 export class AuthController {
-	constructor(private authService: AuthService) { }
+	constructor(private authService: AuthService) {}
 
-	@HttpCode(HttpStatus.OK)
-	@ApiResponse({status: 200, description: 'Success'})
-	@ApiResponse({status: 409, description: 'Conflict'})
-	@ApiOperation({ summary: 'Register a new user' })
-	@Post('register')
+	@ApiOperation({ summary: "Register a new user" })
+	@ApiResponse({ status: 201, description: "Registered" })
+	@ApiResponse({ status: 409, description: "Conflict" })
+	@UseGuards(IsUserNotExistsGuard)
+	@Post("register")
 	register(@Body() registerDto: RegisterDto) {
 		return this.authService.register(registerDto);
 	}
-	
-	@HttpCode(HttpStatus.OK)
-	@ApiResponse({status: 200, description: 'Success'})
-	@ApiOperation({ summary: 'Login as existing user' })
-	@Post('login')
+
+	@ApiOperation({ summary: "Login as existing user" })
+	@ApiResponse({ status: 201, description: "Logined" })
+	@ApiResponse({ status: 401, description: "Unauthorized" })
+	@UseGuards(IsUserExistsGuard)
+	@Post("login")
 	login(@Body() loginDto: LoginDto) {
 		return this.authService.login(loginDto);
 	}
 
+	@ApiBearerAuth()
+	@ApiOperation({ summary: "Get profile" })
+	@ApiResponse({ status: 200, description: "Success" })
+	@ApiResponse({ status: 401, description: "Unauthorized" })
 	@UseGuards(AuthGuard)
-	@Get('profile')
+	@Get("profile")
 	getProfile(@Request() req) {
-		return req.user;
+		return this.authService.profile();
 	}
 
 	// @Post('logout')

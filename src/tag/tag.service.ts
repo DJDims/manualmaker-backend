@@ -1,4 +1,4 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
 import { CreateTagDto } from './dto/create-tag.dto';
 import { UpdateTagDto } from './dto/update-tag.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -26,8 +26,14 @@ export class TagService {
 		return await this.tagModel.find().exec();
 	}
 
-	async findOne(id: string) {
+	async findById(id: string) {
 		return await this.tagModel.findById(id).exec();
+	}
+
+	async findByName(name: string) {
+		const tag = await this.tagModel.findOne({ name: name }).exec();
+		if (!tag) throw new NotFoundException();
+		return tag;
 	}
 
 	async update(id: string, updateTagDto: UpdateTagDto) {

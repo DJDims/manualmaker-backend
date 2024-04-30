@@ -44,11 +44,11 @@ export class UserService {
 		return await this.userModel.findByIdAndDelete(id).exec();
 	}
 
-	async follow(id: string) {
-		return await this.userModel.findByIdAndDelete(id).exec();
+	async follow(id: string, followerId: string) {
+		return await this.userModel.findByIdAndUpdate(followerId, {$push:{following: id}}).exec();
 	}
 	
-	async unfollow(id: string) {
-		return await this.userModel.findByIdAndDelete(id).exec();
+	async unfollow(id: string, unfollowerId: string) {
+		return await this.userModel.findByIdAndUpdate(unfollowerId, {$pull:{following: id}}).exec();
 	}
 }
