@@ -39,6 +39,11 @@ npm i
 yarn install
 ```
 
+## Установить cli для работы с nestjs глобально
+```
+npm i -g @nestjs/cli
+```
+
 ## Заполнить файл .env
 - DATABASE = *строка подключения к mongodb*
 - ACCESS_TOKEN_SECRET = *секретная строка*

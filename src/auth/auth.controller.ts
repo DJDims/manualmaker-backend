@@ -42,16 +42,6 @@ export class AuthController {
 		return this.authService.login(loginDto);
 	}
 
-	@ApiBearerAuth()
-	@ApiOperation({ summary: "Get profile" })
-	@ApiResponse({ status: 200, description: "Success" })
-	@ApiResponse({ status: 401, description: "Unauthorized" })
-	@UseGuards(AuthGuard)
-	@Get("profile")
-	getProfile(@Request() req) {
-		return this.authService.profile();
-	}
-
 	// @Post('logout')
 	// logout() {
 	// 	return this.authService.logout();

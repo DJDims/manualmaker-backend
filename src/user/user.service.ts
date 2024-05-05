@@ -25,7 +25,7 @@ export class UserService {
 	}
 
 	async findById(id: string) {
-		return await this.userModel.findById(id).exec();
+		return await this.userModel.findOne({_id: id}).exec();
 	}
 
 	async findByUsername(username: string) {
@@ -45,10 +45,12 @@ export class UserService {
 	}
 
 	async follow(id: string, followerId: string) {
+		await this.userModel.findByIdAndUpdate(id, {$push:{followers: followerId}}).exec();
 		return await this.userModel.findByIdAndUpdate(followerId, {$push:{following: id}}).exec();
 	}
 	
 	async unfollow(id: string, unfollowerId: string) {
+		await this.userModel.findByIdAndUpdate(id, {$pull:{followers: unfollowerId}}).exec();
 		return await this.userModel.findByIdAndUpdate(unfollowerId, {$pull:{following: id}}).exec();
 	}
 }

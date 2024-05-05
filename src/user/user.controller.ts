@@ -33,6 +33,16 @@ export class UserController {
 		return this.userService.create(createUserDto);
 	}
 
+	@ApiBearerAuth()
+	@ApiOperation({ summary: "Get current profile" })
+	@ApiResponse({ status: 200, description: "Success" })
+	@ApiResponse({ status: 401, description: "Unauthorized" })
+	@UseGuards(AuthGuard)
+	@Get("profile")
+	getProfile(@Request() req) {
+		return this.userService.findById(req.user.userId);
+	}
+
 	@ApiOperation({ summary: "Get all users" })
 	@Get()
 	findAll() {
@@ -84,4 +94,6 @@ export class UserController {
 		const { userId } = req.user;
 		return this.userService.unfollow(id, userId);
 	}
+
+	
 }
