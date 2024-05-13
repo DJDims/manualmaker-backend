@@ -14,13 +14,7 @@ export class ManualService {
 	) { }
 
 	async create(createManualDto: CreateManualDto) {
-		try {
-			const tag = new this.manualModel(createManualDto);
-			return await tag.save();
-		} catch (error) {
-			if (error.code === 11000) throw new HttpException("Tag name alredy taken", HttpStatus.BAD_REQUEST);
-			throw error;
-		}
+		return await this.manualModel.create(createManualDto);
 	}
 
 	async findAll() {
@@ -29,6 +23,10 @@ export class ManualService {
 
 	async findOne(id: string) {
 		return await this.manualModel.findById(id).exec();
+	}
+
+	async findByUserId(id: string) {
+		return await this.manualModel.find({author: id}).exec();
 	}
 
 	async update(id: string, updateManualDto: UpdateManualDto) {

@@ -12,6 +12,10 @@ export class CreateManualDto {
 	author: string
 
 	@IsString()
+	@ApiProperty({ description: "Manual description", default: "", type: String, required: false })
+	description: string
+
+	@IsString()
 	@ApiProperty({ description: "Manual image", default: "", type: String, required: false })
 	thumbnail: string
 
