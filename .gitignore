@@ -37,3 +37,4 @@ lerna-debug.log*
 # custom files
 .env
 package-lock.json
+pnpm-lock.yaml

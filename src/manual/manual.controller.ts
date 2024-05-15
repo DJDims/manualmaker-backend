@@ -22,8 +22,9 @@ import { AuthGuard } from "src/guards/auth.guard";
 export class ManualController {
 	constructor(private readonly manualService: ManualService) {}
 
-	@ApiOperation({ summary: "Create new manual" })
 	@UseGuards(AuthGuard)
+	@ApiBearerAuth()
+	@ApiOperation({ summary: "Create new manual" })
 	@Post()
 	create(@Body() createManualDto: CreateManualDto) {
 		return this.manualService.create(createManualDto);
@@ -41,7 +42,7 @@ export class ManualController {
 		return this.manualService.findOne(id);
 	}
 
-	@ApiOperation({ summary: "Find manual by user id" })
+	@ApiOperation({ summary: "Find manuals by user id" })
 	@Get("user/:id")
 	findByUserId(@Param("id") id: string) {
 		return this.manualService.findByUserId(id);
