@@ -6,7 +6,7 @@ import {
 import { JwtService } from "@nestjs/jwt";
 import { UserService } from "../user/user.service";
 import { RegisterDto } from "./dto/register.dto";
-import { LoginDto } from "./dto/Login.dto";
+import { LoginDto } from "./dto/login.dto";
 import * as argon2 from "argon2";
 import { CreateUserDto } from "src/user/dto/create-user.dto";
 
