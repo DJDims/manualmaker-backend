@@ -17,6 +17,10 @@ export class UpdateManualDto extends PartialType(CreateManualDto) {
 	@ApiProperty({ description: "Manual image", default: "", type: String, required: false })
 	thumbnail: string
 
+	@IsString()
+	@ApiProperty({ description: "Manual description"})
+	description?: string;
+
 	@ApiProperty({ description: "Manual tags list", default: "", type: [String], required: false })
 	tags: [string]
 

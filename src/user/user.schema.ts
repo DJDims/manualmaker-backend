@@ -3,7 +3,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
 
-@Schema()
+@Schema({timestamps: true})
 export class User {
     @Prop({unique: true})
     username: string;
@@ -17,7 +17,7 @@ export class User {
 	@Prop({default:"user"})
 	role: string;
     
-    @Prop({default:"https://sun9-44.userapi.com/impf/c846419/v846419078/528c9/EW3P9agvXJw.jpg?size=2560x1396&quality=96&sign=39a73398fd915e2ccffa5388878d6a57&type=album"})
+    @Prop({default:"https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5f993868-5417-4268-9c23-1c6f0fc60b91/dfa0qwu-82486dd7-3149-4677-a533-86bb9799ab93.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzVmOTkzODY4LTU0MTctNDI2OC05YzIzLTFjNmYwZmM2MGI5MVwvZGZhMHF3dS04MjQ4NmRkNy0zMTQ5LTQ2NzctYTUzMy04NmJiOTc5OWFiOTMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Ess1ogBdTivAhWG9xsV1SjyuF43s8yomI9K3ZF_yDf8"})
     avatar: string;
     
     @Prop()

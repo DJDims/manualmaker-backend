@@ -4,7 +4,7 @@ import { IStep } from './dto/interfaces';
 
 export type TagDocument = HydratedDocument<Manual>;
 
-@Schema()
+@Schema({timestamps: true})
 export class Manual {
     @Prop({unique: true})
 	title: string;
@@ -14,6 +14,9 @@ export class Manual {
 
 	@Prop()
 	thumbnail: string
+
+	@Prop()
+	description: string
 
 	@Prop()
 	tags: [string]
